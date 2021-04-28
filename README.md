@@ -22,7 +22,7 @@ outputs a set of lists of values, which can be copy and pasted with some slight 
 
 # Comparing .sam outputs for minimizers and open syncmers
 
-`analyze_sam_reads.py` and `plot_chain_scores.py` and used to analyze sam files. These are used to analyze the output from minimap2 for comparing open syncmers against minimizers. Given two sam files `output_using_syncmers.sam` and `output_using_minimizers.sam` that contain the same reads and same reference, we analyze them using these scripts.  
+Given two sam files `output_using_syncmers.sam` and `output_using_minimizers.sam` that contain the same reads and same reference, we analyze them using these scripts.  
 
 `analyze_sam_reads.py output_using_syncmers.sam output_using_minimizers.sam` tells the user how many unmapped reads are successfully mapped by each of the methods.
 
