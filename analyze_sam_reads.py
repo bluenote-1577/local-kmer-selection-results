@@ -31,15 +31,15 @@ avg_mapq_sync = 0
 avg_mapq_min = 0
 for read in unmapped_reads:
     if reads_map_methods[0][read][0][0] != 4:
-        print(reads_map_methods[0][read],reads_map_methods[1][read],"SYNC MAP")
+ #       print(reads_map_methods[0][read],reads_map_methods[1][read],"SYNC MAP")
         sync_map +=1
         max_mapq = max([x[1] for x in reads_map_methods[0][read]])
         avg_mapq_sync += max_mapq
     elif reads_map_methods[1][read][0][0] != 4:
-        print(reads_map_methods[0][read],reads_map_methods[1][read],"MIN MAP")
+ #       print(reads_map_methods[0][read],reads_map_methods[1][read],"MIN MAP")
         max_mapq = max([x[1] for x in reads_map_methods[1][read]])
         min_map +=1
         avg_mapq_min += max_mapq
 
-print(min_map,sync_map,len(reads_map_methods[0].keys()), len(unmapped_reads),"min map, sync map, num reads, num unmapped reads")
-print(avg_mapq_min/min_map, avg_mapq_sync/sync_map,"avg mapq min/sync")
+print(min_map,sync_map,len(reads_map_methods[0].keys()), len(unmapped_reads),"size (M and not OS), size (OS and not M), num reads, num unmapped reads (R)")
+print(avg_mapq_min/min_map, avg_mapq_sync/sync_map,"avg mapq syncmer, avg mapq minimizer")
