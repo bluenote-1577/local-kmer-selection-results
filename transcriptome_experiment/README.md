@@ -71,5 +71,4 @@ After modification, run
 2. `scripts/get_times_from_log.py experiment.log` to get the runtimes
 3. `scripts/transcriptome_plot (TRANSCRIPTOME_FILE) run_times.pkl aln_SMK*` to generate the plot for the experiment. 
 
-**BY DEFAULT: we only run 2 iterations of the experiment**. To run more experiments (in the paper, we run 9) change `multiple_iteration.sh` from `i in {1..2}` to `i in {1..9}`.
-
+**BY DEFAULT: we only run 2 iterations of the experiment**. To run more experiments (in the paper, we run 9) change `multiple_iteration.sh` from `i in {1..2}` to `i in {1..9}`. This may take anywhere from a day a week, depending on the available computational resources. 
