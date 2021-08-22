@@ -19,6 +19,7 @@
         ```
         cd pre-trained_models
         for file in *.tar.gz; do tar -xzf $file; done
+        cd ../..
 2. [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 3. [os-minimap2](https://github.com/bluenote-1577/os-minimap2) 
 ```
