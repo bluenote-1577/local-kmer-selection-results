@@ -16,6 +16,8 @@ We assume that the user has [conda](https://conda.io/projects/conda/en/latest/us
         git clone https://github.com/bcgsc/NanoSim.git
         cd NanoSim
         pip3 install -r requirements.txt
+        conda install HTSeq
+        conda install joblib
         ```
     1. Unzipping pre-trained models
         ```
