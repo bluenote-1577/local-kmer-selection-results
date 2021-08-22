@@ -41,7 +41,7 @@ The first step is to modify the `Snakefile.smk` so that the paths are correct.
 
 1. EXP_FILE - expression file used by NanoSim for simulating transcripts. Should be `human_NA12878_cDNA_Bham1_guppy/expression_abundance.tsv` where `human_NA12878_cDNA_Bham1_guppy` is the **unzipped** pre-trained model folder.
 2. TRANSCRIPTOME_REF - the ensembl GRCh38 reference transcriptome. 
-3. TRAINING_FOLDER - we use the model `human_NA12878_cDNA_Bham1_guppy` from NanoSim's pre-trained model folder. 
+3. TRAINING_FOLDER - we use the model `human_NA12878_cDNA_Bham1_guppy` from NanoSim's pre-trained model folder. Again, this is the **unzipped** pre-trained model folder. 
 4. REF_GENOME - GRCh38 reference genome.
 5. OS_MINIMAP_BIN - the `minimap2` executable file compiled from the os-minimap2 directory. Important: this is _not_ the standard minimap2, this is the minimap2 binary with open syncmer support.
 6. NANOSIM_BIN - ``NanoSim/src/simulator.py`` is the python file which is in the src folder of NanoSim. 
