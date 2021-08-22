@@ -1,11 +1,11 @@
 RAN = range(11,25+1)
-density = 3
+density = 7
 it = 1
 
-EXP_FILE = "human_NA12878_cDNA_Bham1_guppy/expression_abundance.tsv"
+EXP_FILE = "NanoSim/pre-trained_models/human_NA12878_cDNA_Bham1_guppy/expression_abundance.tsv"
 TRANSCRIPTOME_REF = "ref/Homo_sapiens.GRCh38.cdna.all.fa"
-TRAINING_FOLDER = "human_NA12878_cDNA_Bham1_guppy/"
-REF_GENOME = "ref/GRCh38.fa"
+TRAINING_FOLDER = "NanoSim/pre-trained_models/human_NA12878_cDNA_Bham1_guppy/"
+REF_GENOME = "ref/GCF_000001405.26_GRCh38_genomic.fna"
 OS_MINIMAP_BIN = "os-minimap2/minimap2"
 NANOSIM_BIN = "NanoSim/src/simulator.py"
 
@@ -23,7 +23,7 @@ rule generate_reads:
     output: 
         "reads/transcript/simulated_d%di%d_aligned_reads.fasta" %(density,it)
     shell:
-        "%s transcriptome -rt {input.transcriptome} -e {input.exp_file} -c {input.training_folder}training -rg {input.ref_genome} -o reads/transcript/simulated_d%di%d" %(NANOSIM_BIN, density,it)
+        "%s transcriptome -rt {input.transcriptome} -e {input.exp_file} -c {input.training_folder}/training -rg {input.ref_genome} -o reads/transcript/simulated_d%di%d" %(NANOSIM_BIN, density,it)
 
 rule sync_map:
     input:
