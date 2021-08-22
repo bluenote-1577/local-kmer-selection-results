@@ -56,7 +56,7 @@ pip3 install SciencePlots
 ```
 ### Running the experiment
 
-The first step is to modify the `Snakefile.smk` so that the paths are correct.
+The first step is to modify the `Snakefile.smk` so that the paths are correct. If following the steps above, then you should not need to change the file, but do  sure the paths are correct. 
 
 1. EXP_FILE - expression file used by NanoSim for simulating transcripts. Should be `human_NA12878_cDNA_Bham1_guppy/expression_abundance.tsv` where `human_NA12878_cDNA_Bham1_guppy` is the **unzipped** pre-trained model folder.
 2. TRANSCRIPTOME_REF - the ensembl GRCh38 reference transcriptome. 
