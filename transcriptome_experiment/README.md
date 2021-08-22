@@ -18,6 +18,7 @@ We assume that the user has [conda](https://conda.io/projects/conda/en/latest/us
         pip3 install -r requirements.txt
         conda install HTSeq
         conda install joblib
+        conda install sklearn
         ```
     1. Unzipping pre-trained models
         ```
