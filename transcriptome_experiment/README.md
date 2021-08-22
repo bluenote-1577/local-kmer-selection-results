@@ -26,8 +26,24 @@
  git clone https://github.com/bluenote-1577/os-minimap2
  cd os-minimap2 && make
 ```
-4. GRCh38 reference genome (can be found at https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz). This exact reference transcriptome must be used, as the pre-trained model is based on this specific transcriptome. 
-5. ensembl GRCh38 reference transcriptome (can be found at http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz)
+4. GRCh38 reference genome
+```
+mkdir ref
+cd ref
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz
+tar -xzf GCF_000001405.26_GRCh38_genomic.fna.gz
+samtools faidx GCF_000001405.26_GRCh38_genomic.fna
+cd ..
+```
+5. ensemble reference transcriptome 
+```
+cd ref
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
+tar -xzf Homo_sapiens.GRCh38.cdna.all.fa.gz
+samtools faidx Homo_sapiens.GRCh38.cdna.all.fa
+cd ..
+```
+This exact reference transcriptome must be used, as the pre-trained model is based on this specific transcriptome. 
 6. [SciencePlots](https://github.com/garrettj403/SciencePlots) is used for plotting. 
     1. Installing SciencePlots via Pip3
         ```
