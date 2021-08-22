@@ -11,15 +11,13 @@
         ```
     1. Installing NanoSim
         ```
-        mkdir -p $HOME/software
-        cd $HOME/software
         git clone https://github.com/bcgsc/NanoSim.git
-        cd $HOME/software/NanoSim
+        cd NanoSim
         pip3 install -r requirements.txt
         ```
     1. Unzipping pre-trained models
         ```
-        cd $HOME/software/NanoSim/pre-trained_models
+        cd NanoSim/pre-trained_models
         for file in *.tar.gz; do tar -xzf $file; done
 2. [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 3. [os-minimap2](https://github.com/bluenote-1577/os-minimap2) 
