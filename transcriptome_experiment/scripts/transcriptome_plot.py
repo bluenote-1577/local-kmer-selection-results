@@ -17,11 +17,11 @@ def mean_confidence_interval(data, confidence=0.95):
     h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
     return h
 
-iterate_dirs = sys.argv[1:]
+iterate_dirs = sys.argv[3:]
 num_iterates = len(iterate_dirs)
-transcriptome_ref = '/home/jshaw//scratch/2021_theory_kmers_human_experiment/ref/Homo_sapiens.GRCh38.cdna.all.fa'
 mapq_cutoff = 1
-densmeth_to_timelist = pickle.load(open('/home/jshaw/scratch/2021_theory_kmers_human_experiment/scripts//dump.pkl', 'rb'))
+transcriptome_ref = sys.argv[1]
+densmeth_to_timelist = pickle.load(open(sys.argv[2], 'rb'))
 print(densmeth_to_timelist)
 
 plt.rcParams.update({'font.size': 14})

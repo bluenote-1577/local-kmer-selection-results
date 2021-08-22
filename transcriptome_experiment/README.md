@@ -4,6 +4,8 @@
 
 ### Required software and files:
 
+We assume that the user has [conda](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html) installed. We suggest first creating a new virtual environment using ``conda create --name experiment_transcriptome; conda activate experiment_transcriptome``
+
 1. [NanoSim](https://github.com/bcgsc/NanoSim)  Note that you **must unzip the pre-trained models before using this pipeline**. The pre-trained model used is NanoSim/pre-trained_models/human_NA12878_DNA_FAB49712_guppy.tar.gz.
     1. Making sure Python3-pip is available
         ```
@@ -11,33 +13,50 @@
         ```
     1. Installing NanoSim
         ```
-        mkdir -p $HOME/software
-        cd $HOME/software
         git clone https://github.com/bcgsc/NanoSim.git
-        cd $HOME/software/NanoSim
+        cd NanoSim
         pip3 install -r requirements.txt
+        conda install HTSeq
+        conda install joblib
+        pip3 install sklearn
         ```
     1. Unzipping pre-trained models
         ```
-        cd $HOME/software/NanoSim/pre-trained_models
+        cd pre-trained_models
         for file in *.tar.gz; do tar -xzf $file; done
+        cd ../..
 2. [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 3. [os-minimap2](https://github.com/bluenote-1577/os-minimap2) 
 ```
  git clone https://github.com/bluenote-1577/os-minimap2
  cd os-minimap2 && make
 ```
-4. GRCh38 reference genome (can be found at https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz). This exact reference transcriptome must be used, as the pre-trained model is based on this specific transcriptome. 
-5. ensembl GRCh38 reference transcriptome (can be found at http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz)
-6. [SciencePlots](https://github.com/garrettj403/SciencePlots) is used for plotting. 
-    1. Installing SciencePlots via Pip3
-        ```
-        pip3 install matplotlib
-        pip3 install SciencePlots
-        
+4. GRCh38 reference genome
+```
+mkdir ref
+cd ref
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz
+gzip -d GCF_000001405.26_GRCh38_genomic.fna.gz
+samtools faidx GCsamtools faidx Homo_sapiens.GRCh38.cdna.all.fa
+F_000001405.26_GRCh38_genomic.fna
+cd ..
+```
+5. ensemble reference transcriptome - This exact reference transcriptome must be used, as the pre-trained model is based on this specific transcriptome.
+```
+cd ref
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
+gzip -d Homo_sapiens.GRCh38.cdna.all.fa.gz
+samtools faidx Homo_sapiens.GRCh38.cdna.all.fa
+cd ..
+``` 
+6. [SciencePlots](https://github.com/garrettj403/SciencePlots) is used for plotting. Installing SciencePlots via Pip3
+```
+pip3 install matplotlib 
+pip3 install SciencePlots 
+```
 ### Running the experiment
 
-The first step is to modify the `Snakefile.smk` so that the paths are correct.
+The first step is to modify the `Snakefile.smk` so that the paths are correct. If following the steps above, then you should not need to change the file, but do  sure the paths are correct. 
 
 1. EXP_FILE - expression file used by NanoSim for simulating transcripts. Should be `human_NA12878_cDNA_Bham1_guppy/expression_abundance.tsv` where `human_NA12878_cDNA_Bham1_guppy` is the **unzipped** pre-trained model folder.
 2. TRANSCRIPTOME_REF - the ensembl GRCh38 reference transcriptome. 
@@ -48,7 +67,8 @@ The first step is to modify the `Snakefile.smk` so that the paths are correct.
 
 After modification, run 
 
-1. Index reference files using `samtools faidx` 
-2. `./multiple_iteration.sh > experiment.log 2>&1` to align simulated reads over a range of parameters. Output to log is needed to get running time.
-3. `scripts/get_times_from_log.py experiment.log` to get the runtimes
-4. `scripts/transcriptome_plot (TRANSCRIPTOME_FILE) run_times.pkl aln_SMK*` to generate the plot for the experiment. 
+1. `./multiple_iteration_smk.sh > experiment.log 2>&1` to align simulated reads over a range of parameters. Output to log is needed to get running time. This step may take a few hours, so use `nohup bash multiple_iteration_smk.sh > experiment.log 2>&1` instead if needed.
+2. `scripts/get_times_from_log.py experiment.log` to get the runtimes
+3. `scripts/transcriptome_plot (TRANSCRIPTOME_FILE) run_times.pkl aln_SMK*` to generate the plot for the experiment. 
+
+**BY DEFAULT: we only run 2 iterations of the experiment**. To run more experiments (in the paper, we run 9) change `multiple_iteration.sh` from `i in {1..2}` to `i in {1..9}`. This may take anywhere from a day a week, depending on the available computational resources. 
