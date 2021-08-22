@@ -31,25 +31,24 @@
 mkdir ref
 cd ref
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz
-tar -xzf GCF_000001405.26_GRCh38_genomic.fna.gz
-samtools faidx GCF_000001405.26_GRCh38_genomic.fna
+gzip -d GCF_000001405.26_GRCh38_genomic.fna.gz
+samtools faidx GCsamtools faidx Homo_sapiens.GRCh38.cdna.all.fa
+F_000001405.26_GRCh38_genomic.fna
 cd ..
 ```
-5. ensemble reference transcriptome 
+5. ensemble reference transcriptome - This exact reference transcriptome must be used, as the pre-trained model is based on this specific transcriptome.
 ```
 cd ref
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
-tar -xzf Homo_sapiens.GRCh38.cdna.all.fa.gz
+gzip -d Homo_sapiens.GRCh38.cdna.all.fa.gz
 samtools faidx Homo_sapiens.GRCh38.cdna.all.fa
 cd ..
+``` 
+6. [SciencePlots](https://github.com/garrettj403/SciencePlots) is used for plotting. Installing SciencePlots via Pip3
 ```
-This exact reference transcriptome must be used, as the pre-trained model is based on this specific transcriptome. 
-6. [SciencePlots](https://github.com/garrettj403/SciencePlots) is used for plotting. 
-    1. Installing SciencePlots via Pip3
-        ```
-        pip3 install matplotlib
-        pip3 install SciencePlots
-        
+pip3 install matplotlib 
+pip3 install SciencePlots 
+```
 ### Running the experiment
 
 The first step is to modify the `Snakefile.smk` so that the paths are correct.
