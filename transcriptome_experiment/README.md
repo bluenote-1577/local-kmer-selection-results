@@ -47,7 +47,8 @@ The first step is to modify the `Snakefile.smk` so that the paths are correct.
 6. NANOSIM_BIN - ``NanoSim/src/simulator.py`` is the python file which is in the src folder of NanoSim. 
 
 After modification, run 
-0. Index reference files using `samtools faidx` 
-1. `./multiple_iteration.sh > experiment.log 2>&1` to align simulated reads over a range of parameters. Output to log is needed to get running time.
-2. `scripts/get_times_from_log.py experiment.log` to get the runtimes
-3. `scripts/transcriptome_plot (TRANSCRIPTOME_FILE) run_times.pkl aln_SMK*` to generate the plot for the experiment. 
+
+1. Index reference files using `samtools faidx` 
+2. `./multiple_iteration.sh > experiment.log 2>&1` to align simulated reads over a range of parameters. Output to log is needed to get running time.
+3. `scripts/get_times_from_log.py experiment.log` to get the runtimes
+4. `scripts/transcriptome_plot (TRANSCRIPTOME_FILE) run_times.pkl aln_SMK*` to generate the plot for the experiment. 
