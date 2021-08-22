@@ -67,11 +67,10 @@ The first step is to modify the `Snakefile.smk` so that the paths are correct.
 
 After modification, run 
 
-**BY DEFAULT: we only run 2 iterations of the experiment**
-
-To run more experiments (in the paper, we run 9) change `multiple_iteration.sh` from `i in {1..2}` to `i in {1..9}`.
-
 1. **Unzip and index reference files** using `samtools faidx` 
 2. `./multiple_iteration.sh > experiment.log 2>&1` to align simulated reads over a range of parameters. Output to log is needed to get running time. This step may take a few hours, so use `nohup bash multiple_iteration.sh > experiment.log 2>&1` instead if needed.
 3. `scripts/get_times_from_log.py experiment.log` to get the runtimes
 4. `scripts/transcriptome_plot (TRANSCRIPTOME_FILE) run_times.pkl aln_SMK*` to generate the plot for the experiment. 
+
+**BY DEFAULT: we only run 2 iterations of the experiment**. To run more experiments (in the paper, we run 9) change `multiple_iteration.sh` from `i in {1..2}` to `i in {1..9}`.
+
