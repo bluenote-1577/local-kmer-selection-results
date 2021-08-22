@@ -4,6 +4,8 @@
 
 ### Required software and files:
 
+We assume that the user has conda[https://conda.io/projects/conda/en/latest/user-guide/install/linux.html] installed. We suggest first creating a new virtual environment using ``conda create --name experiment_transcriptome; conda activate experiment_transcriptome``
+
 1. [NanoSim](https://github.com/bcgsc/NanoSim)  Note that you **must unzip the pre-trained models before using this pipeline**. The pre-trained model used is NanoSim/pre-trained_models/human_NA12878_DNA_FAB49712_guppy.tar.gz.
     1. Making sure Python3-pip is available
         ```
