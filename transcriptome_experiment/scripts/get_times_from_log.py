@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 from natsort import natsorted
 from collections import defaultdict
-big_log = '/home/jshaw/scratch/2021_theory_kmers_human_experiment/all_runs.log'
+big_log = sys.argv[1]
 
 mean_densmeth_to_timelist_sorted = defaultdict(list)
 iters = ['i1','i2','i3','i4','i5','i6','i7','i8','i9']
@@ -43,4 +43,4 @@ for it in iters:
     f.close()
 
 print(mean_densmeth_to_timelist_sorted)
-pickle.dump(mean_densmeth_to_timelist_sorted,open('dump.pkl','wb'))
+pickle.dump(mean_densmeth_to_timelist_sorted,open('run_times.pkl','wb'))

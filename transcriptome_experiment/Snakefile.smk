@@ -1,6 +1,6 @@
 RAN = range(11,25+1)
-density = 3
-it = 1
+density = 7
+it = 2
 
 EXP_FILE = "human_NA12878_cDNA_Bham1_guppy/expression_abundance.tsv"
 TRANSCRIPTOME_REF = "ref/Homo_sapiens.GRCh38.cdna.all.fa"
