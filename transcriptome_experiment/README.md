@@ -17,7 +17,7 @@
         ```
     1. Unzipping pre-trained models
         ```
-        cd NanoSim/pre-trained_models
+        cd pre-trained_models
         for file in *.tar.gz; do tar -xzf $file; done
 2. [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 3. [os-minimap2](https://github.com/bluenote-1577/os-minimap2) 
