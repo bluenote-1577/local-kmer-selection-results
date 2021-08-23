@@ -11,16 +11,19 @@ We assume that the user has [conda](https://conda.io/projects/conda/en/latest/us
         ```
         sudo apt install python3-pip
         ```
-    1. Installing NanoSim
+    2. Installing NanoSim
         ```
         git clone https://github.com/bcgsc/NanoSim.git
         cd NanoSim
         pip3 install -r requirements.txt
         conda install HTSeq
         conda install joblib
-        pip3 install sklearn
+        pip3 install scikit-learn==0.22.1
         ```
-    1. Unzipping pre-trained models
+        
+    Make sure that scikit-learn version 0.22.1 is installed or NanoSim will fail!
+    
+    3. Unzipping pre-trained models
         ```
         cd pre-trained_models
         for file in *.tar.gz; do tar -xzf $file; done
