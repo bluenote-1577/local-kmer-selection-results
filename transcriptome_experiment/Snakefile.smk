@@ -1,6 +1,6 @@
 RAN = range(11,25+1)
-density = 7
-it = 1
+density = 3
+it = 3
 
 EXP_FILE = "NanoSim/pre-trained_models/human_NA12878_cDNA_Bham1_guppy/expression_abundance.tsv"
 TRANSCRIPTOME_REF = "ref/Homo_sapiens.GRCh38.cdna.all.fa"
@@ -33,7 +33,7 @@ rule sync_map:
         expand("aln_SMK%d/k{ran}_sync_d%d.sam" %(it,density),ran=RAN),
         expand("aln_SMK%d/k{ran}_mini_d%d.sam" %(it,density),ran=RAN)
     shell:
-        "for i in {{11..25}}; do %s -t 20 -ax splice -k $i --syncs $((i - %d)) {input} > aln_SMK%d/k${{i}}_sync_d%d.sam; done;for i in {{11..25}}; do %s -minimap2/minimap2 -t 20 -ax splice -k $i -w %d {input} > aln_SMK%d/k${{i}}_mini_d%d.sam; done" %(OS_MINIMAP_BIN, density - 1, it, density, OS_MINIMAP_BIN, 2 * density - 1, it, density)
+        "for i in {{11..25}}; do %s -t 20 -ax splice -k $i --syncs $((i - %d)) {input} > aln_SMK%d/k${{i}}_sync_d%d.sam; done;for i in {{11..25}}; do %s -t 20 -ax splice -k $i -w %d {input} > aln_SMK%d/k${{i}}_mini_d%d.sam; done" %(OS_MINIMAP_BIN, density - 1, it, density, OS_MINIMAP_BIN, 2 * density - 1, it, density)
 
 
 
