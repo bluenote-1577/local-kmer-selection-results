@@ -242,6 +242,7 @@ for density in ['d3','d5','d7']:
     plt.plot(  fail_mini_dict[density], densmeth_to_timelist[value_d+'mini'], marker+'o', markersize = 4, color = mini_colour,  label='Minimizer, d = 1/' + density[1])   
     plt.xlabel("number of errors")
     plt.ylabel("CPU time (s)")
+plt.yscale('log')
 plt.legend()
 plt.show()
 
